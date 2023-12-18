@@ -1,7 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
     context: path.resolve(__dirname, './src'),
@@ -23,16 +22,6 @@ module.exports = {
                 loader: 'babel-loader'
             },
             {
-                test: /\.scss$/,
-                exclude: /node_modules/,
-                use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
-            },
-            {
-                test: /\.css$/,
-                exclude: /node_modules/,
-                use: [MiniCssExtractPlugin.loader, 'css-loader']
-            },
-            {
                 test: /\.(png|jpg)$/,
                 type: 'asset/resource'
             },
@@ -49,18 +38,7 @@ module.exports = {
             template: './index.html', //Name of template in root folder
             scriptLoading: 'blocking', //Use blocking approach as script loading mode, for compatibility with old browsers
         }),
-        new MiniCssExtractPlugin({
-            filename: '[name].css',
-            chunkFilename: '[id].css'
-        }),
         new CleanWebpackPlugin()
-    ],
-    devtool: 'eval-source-map',// To be able to put breakpoints in ts files
-    devServer: {
-        port: 8080,
-        devMiddleware: {
-            stats: "errors-only"
-        }
-    }
+    ]
 };
    
