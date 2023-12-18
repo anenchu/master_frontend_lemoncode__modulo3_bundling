@@ -1,5 +1,6 @@
 const { merge } = require("webpack-merge");
 const common = require("./webpack.common.js");
+const Dotenv = require('dotenv-webpack');
 
 module.exports = merge(common, {
     mode: 'development',
@@ -17,6 +18,11 @@ module.exports = merge(common, {
             },
         ] 
     },
+    plugins: [
+        new Dotenv({
+            path: './dev.env'
+        })
+    ],
     stats: "errors-only",
     devtool: 'eval-source-map',// To be able to put breakpoints in ts files
     devServer: {
