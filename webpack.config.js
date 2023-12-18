@@ -55,8 +55,12 @@ module.exports = {
         }),
         new CleanWebpackPlugin()
     ],
+    devtool: 'eval-source-map',// To be able to put breakpoints in ts files
     devServer: {
-        port: 8080
+        port: 8080,
+        devMiddleware: {
+            stats: "errors-only"
+        }
     }
 };
    
